@@ -1,0 +1,28 @@
+{
+  "links": {
+    "home": "Home",
+    "about": "About",
+    "users": "Users",
+    "contact": "Contact",
+    "login": "Login",
+    "english": "English version",
+    "french": "French version"
+  },
+  "home": {
+    "title": "Welcome",
+    "introduction": "This is an introduction in English."
+  },
+  "about": {
+    "title": "About",
+    "introduction": "This page is made to give you more informations."
+  },
+  "contact":{
+    "title": "Contact",
+    "introduction": "Feel free to contact us !"
+  },
+  "login":{
+    "title":"Login",
+    "username":"Username",
+    "password":"Password"
+  }
+}
