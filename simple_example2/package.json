@@ -1,6 +1,8 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "simple_example2",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "Young-il Cho <youngilcho@nhnent.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,9 +10,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.4",
-    "bootstrap-vue": "^2.21.2",
-    "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vue-router": "^3.5.2"
   },

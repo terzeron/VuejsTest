@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <router-view/>
+    <b-navbar>
+      <b-navbar-nav>
+        <b-nav-item>
+          <router-link to="/">
+            <b-nav-text>홈</b-nav-text>
+          </router-link>
+        </b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  components: {},
 }
 </script>
 

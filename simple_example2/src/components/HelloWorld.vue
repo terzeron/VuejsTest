@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    Hello, world!
     <div>{{ msg }}</div>
     <div>
         {{ message }}
@@ -12,8 +13,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      message: '안녕하세요'
+      msg: '"Hello, world" message from HelloWorld.vue',
+      message: '안녕하세요? 이 메시지는 HelloWorld.vue에서 data()로 정의된 것입니다.'
     }
   }
 }

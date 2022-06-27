@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router';
 
 import { BootstrapVue } from 'bootstrap-vue';
@@ -11,6 +11,9 @@ Vue.use(BootstrapVue);
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  el: '#app',
   router,
-}).$mount('#app')
+  render: h => h(App),
+  components: {App},
+  template: '<App/>'
+})
