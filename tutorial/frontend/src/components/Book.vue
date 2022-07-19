@@ -1,5 +1,5 @@
 <template>
-  <div id="books">
+  <div id="book">
     <p>title: {{ title }}</p>
     <p>number: {{ number }}</p>
     <p>book data: {{ bookData }}</p>
@@ -16,25 +16,37 @@
 
     <div v-if="status">
       <h1>작품 목록</h1>
-      <ul>
+      <ul v-if="bookData">
         <li v-for="item in bookData" :key="item.title">{{ item.title }} by {{ item.author }}</li>
       </ul>
     </div>
 
+    <button @click="run()">실행</button>
+
+    <div class="memo" v-bind:class="{ active: isActive, 'text-danger': hasError }" v-bind:style="{ color: activeColor }">
+      메모
+    </div>
+
     <button @click="bookButtonClicked">책 불러오기</button>
 
-    <button ref="saveFeedButton1" @click="saveFeedButtonClicked">Save</button>
+    <div id="app">
+      <total-counter></total-counter>
+    </div>
 
-    <total-counter></total-counter>
+    <button ref="saveFeedButton1" @click="saveFeedButtonClicked">Save Feed</button>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import TotalCounter from './TotalCounter.vue';
+import _ from 'lodash';
 
 export default {
   name: 'Book',
+  components: {
+    TotalCounter,
+  },
   data: function () {
     return {
       title: 'Books',
@@ -45,6 +57,10 @@ export default {
       ],
       status: true,
       errorMessage: '',
+      isActive: true,
+      hasError: false,
+      activeColor: 'red',
+
     }
   },
   computed: {
@@ -52,11 +68,13 @@ export default {
       return '실행 ' + (this.status ? '중단' : '재개');
     }
   },
+
   watch: {
     title: function () {
       this.errorMessage = '제목 변경됨';
     }
   },
+
   methods: {
     getApiUrlPath: function () {
       let pathPrefix = 'https://api.mydomain.com/myapp';
@@ -65,9 +83,6 @@ export default {
       }
       return pathPrefix;
     },
-    bookButtonClicked() {
-      return this.getBooks();
-    },
     getBooks() {
       const url = this.getApiUrlPath() + "/books";
       axios.get(url)
@@ -75,19 +90,32 @@ export default {
             if (!res.data.status) {
               this.errorMessage = res.data.message;
             } else {
-              this.bookData = res.data['books'];
+              this.bookData = _.filter(res.data['books'], (o) => {
+                return o['author'] !== '아서 클라크';
+              }).map((o) => {
+                o['date'] = new Date();
+                return o;
+              });
             }
           })
           .catch((error) => {
             this.errorMessage = error;
           })
     },
-    saveFeedButtonClicked: function () {
-      this.$refs.saveFeedButton1.innerText = "Saved";
+    bookButtonClicked() {
+      return this.getBooks();
+    },
+    register(ref) {
+      this.$refs[ref].status = true;
+    },
+    unregister(ref) {
+      this.$refs[ref].status = false;
+    },
+
+    saveFeedButtonClicked: function() {
+      this.$refs.saveFeedButton1.innerText = "Feed saved";
     }
-  },
-  components: {
-    TotalCounter
+
   },
   created: function () {
     console.log("component created");
@@ -99,8 +127,5 @@ export default {
 </script>
 
 <style scoped>
-#books {
-  border: black 1px solid;
-}
-</style>
 
+</style>

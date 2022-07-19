@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style scoped>
-#mgmt { border: black 1px solid; }
+
 </style>

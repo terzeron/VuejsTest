@@ -28,5 +28,5 @@ export default {
 </script>
 
 <style scoped>
-#counter-event-example { border: black 1px solid; }
+
 </style>
