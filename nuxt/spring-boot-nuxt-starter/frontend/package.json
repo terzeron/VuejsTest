@@ -7,7 +7,7 @@
     "express-session": "^1.14.2",
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
-    "nuxt": "^1.0.0",
+    "nuxt": "^3.0.0",
     "vue-i18n": "^6.0.0"
   },
   "scripts": {
